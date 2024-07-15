@@ -9,12 +9,6 @@ body {
   font-family: "Jersey 20", monospace;
 }
 
-/* .jersey-20-regular {
-  font-family: "Jersey 20", monospace;
-  font-weight: 400;
-  font-style: normal;
-} */
-
 section {
   display: flex;
   height: 100vh;
@@ -44,23 +38,32 @@ figure {
 }
 
 figcaption {
-  font-size: 36px;
-  font-weight: normal;
-  position: fixed;
-  text-align: center;
-  z-index: 1;
   bottom: 0;
   color: #fff;
-  margin: 0 auto;
-  width: 50%;
+  font-size: 36px;
+  font-weight: normal;
   padding: 20px 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+  margin: 0 auto;
 }
 
 img {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
-  position: fixed;
-  width: 50%;
+  position: absolute;
+  opacity: 0;
+}
+
+.display {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
 }
 
 aside {
@@ -91,4 +94,28 @@ progress[value]::-webkit-progress-bar {
 
 progress[value]::-webkit-progress-value {
   background: #294910;
+}
+
+@media (max-width: 800px) {
+  section {
+    flex-direction: column;
+  }
+
+  figure {
+    flex-grow: 1;
+    width: 100vw;
+  }
+
+  figcaption {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 80px;
+  }
 }

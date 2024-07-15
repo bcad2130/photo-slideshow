@@ -9,24 +9,28 @@ import avocado from "./assets/image6.jpeg";
 
 const images = [cabbage, mango, fig, gaze, peach, avocado];
 
-const Loading = () => (
+const Loading = ({ calculatedWidth }) => (
   <aside>
     <div className="loading-bar">
       <label htmlFor="images-loaded">Loading all your favorite images...</label>
-      <progress id="images-loaded" max="100" value="50"></progress>
+      <progress id="images-loaded" max="100" value={calculatedWidth}></progress>
     </div>
   </aside>
 );
 
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [numLoaded, setNumLoaded] = useState(0);
 
   const handleClick = () => {
     const length = images.length - 1;
-
     setCurrentImage((currentImage) => {
       return currentImage < length ? currentImage + 1 : 0;
     });
+  };
+
+  const handleImageLoad = () => {
+    setNumLoaded((numLoaded) => numLoaded + 1);
   };
 
   return (
@@ -39,11 +43,23 @@ const App = () => {
       </header>
 
       <figure>
-        <Loading />
+        {numLoaded < images.length && (
+          <Loading calculatedWidth={(numLoaded / images.length) * 100} />
+        )}
+
         <figcaption>
           {currentImage + 1} / {images.length}
         </figcaption>
-        <img alt="" onClick={handleClick} src={images[currentImage]} />
+        {images.map((imageURL, index) => (
+          <img
+            alt=""
+            key={imageURL}
+            src={imageURL}
+            onClick={handleClick}
+            onLoad={handleImageLoad}
+            className={currentImage === index ? "display" : "hide"}
+          />
+        ))}
       </figure>
     </section>
   );

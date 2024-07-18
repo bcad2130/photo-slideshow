@@ -31,10 +31,12 @@ h2 {
 }
 
 figure {
-  background: #fff;
   margin: 0;
   position: relative;
   width: 50vw;
+  cursor:
+    url("./assets/cursor.svg") 25 25,
+    pointer;
 }
 
 figcaption {
@@ -96,6 +98,21 @@ progress[value]::-webkit-progress-value {
   background: #294910;
 }
 
+nav {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+nav > svg {
+  cursor: pointer;
+  margin: 0 20px;
+}
+
 @media (max-width: 800px) {
   section {
     flex-direction: column;
@@ -117,5 +134,10 @@ progress[value]::-webkit-progress-value {
 
   h1 {
     font-size: 80px;
+  }
+
+  nav > svg {
+    height: 40px;
+    margin: 0 10px;
   }
 }

@@ -7,6 +7,9 @@ import gaze from "./assets/image4.jpeg";
 import peach from "./assets/image5.jpeg";
 import avocado from "./assets/image6.jpeg";
 
+import { ReactComponent as ArrowLeft } from "./assets/arrow-left.svg";
+import { ReactComponent as ArrowRight } from "./assets/arrow-right.svg";
+
 const images = [cabbage, mango, fig, gaze, peach, avocado];
 
 const Loading = ({ calculatedWidth }) => (
@@ -60,8 +63,10 @@ const App = () => {
         {numLoaded < images.length && (
           <Loading calculatedWidth={(numLoaded / images.length) * 100} />
         )}
-        <button className="leftButton" onClick={navLeft} />
-        <button className="rightButton" onClick={navRight} />
+        <nav>
+          <ArrowLeft onClick={navLeft} />
+          <ArrowRight onClick={navRight} />
+        </nav>
         <figcaption>
           {currentImage + 1} / {images.length}
         </figcaption>
@@ -70,7 +75,7 @@ const App = () => {
             alt=""
             key={imageURL}
             src={imageURL}
-            // onClick={handleClick}
+            onClick={handleClick}
             onLoad={handleImageLoad}
             className={currentImage === index ? "display" : "hide"}
           />

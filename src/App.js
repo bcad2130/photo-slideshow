@@ -29,6 +29,20 @@ const App = () => {
     });
   };
 
+  const navLeft = () => {
+    const length = images.length - 1;
+    setCurrentImage((currentImage) => {
+      return currentImage > 0 ? currentImage - 1 : length;
+    });
+  };
+
+  const navRight = () => {
+    const length = images.length - 1;
+    setCurrentImage((currentImage) => {
+      return currentImage < length ? currentImage + 1 : 0;
+    });
+  };
+
   const handleImageLoad = () => {
     setNumLoaded((numLoaded) => numLoaded + 1);
   };
@@ -46,7 +60,8 @@ const App = () => {
         {numLoaded < images.length && (
           <Loading calculatedWidth={(numLoaded / images.length) * 100} />
         )}
-
+        <button className="leftButton" onClick={navLeft} />
+        <button className="rightButton" onClick={navRight} />
         <figcaption>
           {currentImage + 1} / {images.length}
         </figcaption>
@@ -55,7 +70,7 @@ const App = () => {
             alt=""
             key={imageURL}
             src={imageURL}
-            onClick={handleClick}
+            // onClick={handleClick}
             onLoad={handleImageLoad}
             className={currentImage === index ? "display" : "hide"}
           />
